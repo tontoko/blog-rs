@@ -2,7 +2,7 @@
   "scripts": {
     "init:tailwindcss": "tailwindcss -o ./tailwind.css",
     "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify",
-    "build": "npm run build:tailwindcss && npm run install:rust && cargo install trunk && rustup target add wasm32-unknown-unknown && trunk build --release",
+    "build": "npm run build:tailwindcss && npm run install:rust && $HOME/.cargo/bin/cargo install trunk && $HOME/.cargo/bin/rustup target add wasm32-unknown-unknown && $HOME/.cargo/bintrunk build --release",
     "install:rust": "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
   },
   "devDependencies": {

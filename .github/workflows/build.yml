@@ -1,0 +1,39 @@
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: install trunk
+        run: cargo install trunk
+      - name: add wasm32-unknown-unknown
+        run: rustup target add wasm32-unknown-unknown
+
+      - name: build tailwind
+        run: npm run build:tailwindcss
+      - name: build
+        run: trunk build --release
+
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId:${{ secrets.ACCOUNT_ID }}
+          projectName:${{ secrets.PROJECT_NAME }}
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+

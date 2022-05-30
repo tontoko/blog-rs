@@ -10,6 +10,8 @@ env:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: 
+      name: cloudflare
     permissions:
       contents: read
       deployments: write

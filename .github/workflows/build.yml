@@ -33,7 +33,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.ACCOUNT_ID }}
-          projectName:${{ secrets.PROJECT_NAME }}
+          projectName: ${{ secrets.PROJECT_NAME }}
           directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
 

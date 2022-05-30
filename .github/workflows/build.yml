@@ -32,7 +32,7 @@ jobs:
         uses: cloudflare/pages-action@1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId:${{ secrets.ACCOUNT_ID }}
+          accountId: ${{ secrets.ACCOUNT_ID }}
           projectName:${{ secrets.PROJECT_NAME }}
           directory: public
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}

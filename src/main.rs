@@ -10,7 +10,7 @@ fn app() -> Html {
             <p>{ "John Doe: Building and breaking things" }</p>
             <p>{ "Jane Smith: The development process" }</p>
             <p>{ "Matt Miller: The Web 7.0" }</p>
-            <p>{ "Tom Jerry: Mouseless development" }</p>
+            <p class="text-red-500">{ "Tom Jerry: Mouseless development" }</p>
         </div>
         <div>
           <h3>{ "John Doe: Building and breaking things" }</h3>

@@ -1,15 +1,18 @@
 {
   "scripts": {
-    "init:tailwindcss": "tailwindcss -o ./tailwind.css",
-    "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./tailwind.css --minify",
+    "init:tailwindcss": "tailwindcss -o ./public/tailwind.css",
+    "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./public/tailwind.css --minify",
+    "build:workbox": "workbox generateSW workbox-config.js",
     "build": "trunk build --release",
     "dev": "run-p dev:*",
     "dev:serve": "trunk serve",
-    "dev:css": "tailwindcss -w -o tailwind.css"
+    "dev:css": "tailwindcss -w -o ./public/tailwind.css",
+    "dev:workbox": "workbox generateSW --watch workbox-config.js"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
+    "npm-run-all": "^4.1.5",
     "tailwindcss": "^3.0.24",
-    "npm-run-all": "^4.1.5"
+    "workbox-cli": "^6.5.3"
   }
 }

@@ -38,10 +38,10 @@ jobs:
 
       - name: build tailwind
         run: npm run build:tailwindcss
-      - name: build workbox
-        run: npm run build:workbox
       - name: build
         run: trunk build --release
+      - name: build workbox
+        run: npm run build:workbox
 
       - name: Publish to Cloudflare Pages
         uses: cloudflare/pages-action@1

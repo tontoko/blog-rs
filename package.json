@@ -2,7 +2,7 @@
   "scripts": {
     "init:tailwindcss": "tailwindcss -o ./public/tailwind.css",
     "build:tailwindcss": "NODE_ENV=production tailwindcss -c ./tailwind.config.js -o ./public/tailwind.css --minify",
-    "build:workbox": "workbox generateSW workbox-config.js",
+    "build:workbox": "NODE_ENV=production workbox generateSW workbox-config.js",
     "build": "trunk build --release",
     "dev": "run-p dev:*",
     "dev:serve": "trunk serve",

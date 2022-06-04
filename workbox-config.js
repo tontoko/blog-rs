@@ -4,4 +4,5 @@ module.exports = {
   globIgnores: ["**/node_modules/**/*", "sw.js*", "workbox-*.js*"],
   swDest: "dist/sw.js",
   ignoreURLParametersMatching: [/^utm_/, /^fbclid$/],
+  maximumFileSizeToCacheInBytes: 4194304,
 };

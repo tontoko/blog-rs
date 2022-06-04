@@ -8,3 +8,5 @@ yew = "0.19"
 reqwasm = "0.5.0"
 serde = { version = "1.0", features = ["derive"] }
 wasm-bindgen-futures = "0.4"
+yew-router = "0.16"
+

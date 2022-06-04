@@ -1,12 +1,12 @@
 use blog::components::pages;
-use pages::list::List;
+use pages::home::Home;
 use yew::prelude::*;
 use yew_router::prelude::*;
 
 #[derive(Clone, Routable, PartialEq)]
 enum Route {
     #[at("/")]
-    List,
+    Home,
     #[not_found]
     #[at("/404")]
     NotFound,
@@ -14,7 +14,7 @@ enum Route {
 
 fn switch(routes: &Route) -> Html {
     match routes {
-        Route::List => html! { <List /> },
+        Route::Home => html! { <Home /> },
         Route::NotFound => html! { <h1>{ "404" }</h1> },
     }
 }

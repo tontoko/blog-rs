@@ -1,8 +1,8 @@
 use crate::components::layouts::blog_layout::BlogLayout;
 use yew::prelude::*;
 
-#[function_component(List)]
-pub fn list() -> Html {
+#[function_component(Home)]
+pub fn home() -> Html {
     html! {
         <BlogLayout>
             <div class="flex flex-col gap-2 w-full">

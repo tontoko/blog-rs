@@ -1,25 +1,25 @@
-use crate::{components::layouts::blog_layout::BlogLayout, Route};
+use crate::{
+    components::{atoms::blog_list::BlogList, layouts::blog_layout::BlogLayout},
+    Route,
+};
 use yew::prelude::*;
-use yew_router::{history::History, hooks::use_history};
+use yew_router::hooks::use_navigator;
 
 #[function_component(Home)]
 pub fn home() -> Html {
-    let history = use_history().unwrap();
-    let onclick = Callback::once(move |_| {
-        history.push(Route::Post);
+    let history = use_navigator().unwrap();
+    let onclick = Callback::from(move |_e: MouseEvent| {
+        history.push(&Route::Post);
         log::info!("clicked");
     });
+    let fallback = html! {<div>{"Loading..."}</div>};
+
     html! {
         <BlogLayout>
             <div class="flex flex-col gap-2 w-full">
-                {for (1..=5).map(|_| {
-                    html! {
-                        <div class="flex flex-col border border-slate-400 rounded p-2 min-h-[100px] cursor-pointer" onclick={&onclick}>
-                        <p>{"タイトル"}</p>
-                        <p>{"説明..."}</p>
-                        </div>
-                    }
-                })}
+                <Suspense {fallback}>
+                    <BlogList {onclick} />
+                </Suspense>
             </div>
             <div class="flex flex-col w-full items-center mt-2">
                 <p>{"ページ"}</p>

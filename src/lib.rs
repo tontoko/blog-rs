@@ -8,6 +8,12 @@ pub mod components {
         pub mod home;
         pub mod post;
     }
+    pub mod atoms {
+        pub mod blog_list;
+    }
+}
+pub mod hooks {
+    pub mod use_stories;
 }
 
 #[derive(Clone, Routable, PartialEq)]

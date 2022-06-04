@@ -1,20 +1,14 @@
 use blog::components::pages;
+use blog::Route;
 use pages::home::Home;
+use pages::post::Post;
 use yew::prelude::*;
 use yew_router::prelude::*;
-
-#[derive(Clone, Routable, PartialEq)]
-enum Route {
-    #[at("/")]
-    Home,
-    #[not_found]
-    #[at("/404")]
-    NotFound,
-}
 
 fn switch(routes: &Route) -> Html {
     match routes {
         Route::Home => html! { <Home /> },
+        Route::Post => html! { <Post /> },
         Route::NotFound => html! { <h1>{ "404" }</h1> },
     }
 }
@@ -29,5 +23,6 @@ fn app() -> Html {
 }
 
 fn main() {
+    wasm_logger::init(wasm_logger::Config::default());
     yew::start_app::<App>();
 }

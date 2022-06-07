@@ -1,13 +1,19 @@
-use crate::components::layouts::blog_layout::BlogLayout;
+use crate::components::{layouts::blog_layout::BlogLayout, organisms::blog_post::BlogPost};
 use yew::prelude::*;
 
+#[derive(Properties, PartialEq)]
+pub struct PostProps {
+    pub name: String,
+}
+
 #[function_component(Post)]
-pub fn post() -> Html {
+pub fn post(PostProps { name }: &PostProps) -> Html {
+    let fallback = html! {<div>{"Loading..."}</div>};
     html! {
         <BlogLayout>
-            <div class="flex flex-col gap-2 w-full">
-              {"Article"}
-            </div>
+            <Suspense {fallback}>
+                <BlogPost name={name.clone()} />
+            </Suspense>
         </BlogLayout>
     }
 }

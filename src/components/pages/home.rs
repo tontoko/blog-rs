@@ -1,5 +1,5 @@
 use crate::{
-    components::{atoms::blog_list::BlogList, layouts::blog_layout::BlogLayout},
+    components::{layouts::blog_layout::BlogLayout, organisms::blog_list::BlogList},
     Route,
 };
 use yew::prelude::*;
@@ -8,8 +8,8 @@ use yew_router::hooks::use_navigator;
 #[function_component(Home)]
 pub fn home() -> Html {
     let history = use_navigator().unwrap();
-    let onclick = Callback::from(move |_e: MouseEvent| {
-        history.push(&Route::Post);
+    let onclick = Callback::from(move |name: String| {
+        history.push(&Route::Post { name });
         log::info!("clicked");
     });
     let fallback = html! {<div>{"Loading..."}</div>};

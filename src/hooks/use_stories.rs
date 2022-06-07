@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use serde::Deserialize;
 use yew::prelude::*;
 use yew::suspense::{use_future, Suspension, UseFutureHandle};
@@ -5,6 +7,8 @@ use yew::suspense::{use_future, Suspension, UseFutureHandle};
 #[derive(Deserialize, Debug, Clone)]
 pub struct Content {
     pub component: String, // and fields you define yourself are in here
+    pub _editable: Option<String>,
+    pub body: Vec<HashMap<String, String>>,
 }
 #[derive(Deserialize, Debug, Clone)]
 pub struct TranslatedSlug {
@@ -50,12 +54,16 @@ pub struct StoriesRes {
     pub stories: Vec<Story>,
 }
 
-const URL: &str = "https://api.storyblok.com/v2/cdn/stories?cv=1654353862&token=MqSFcDWDiuLzwkH3h7q4hwtt&version=published";
-
 #[hook]
 pub fn use_stories() -> Result<UseFutureHandle<Result<StoriesRes, reqwasm::Error>>, Suspension> {
-    use_future(|| async {
-        reqwasm::http::Request::get(URL)
+    let version = if option_env!("DEV").is_some() {
+        "draft"
+    } else {
+        "published"
+    };
+    let url = format!("https://api.storyblok.com/v2/cdn/stories?cv=1654353862&token=MqSFcDWDiuLzwkH3h7q4hwtt&version={version}");
+    use_future(|| async move {
+        reqwasm::http::Request::get(&url)
             .send()
             .await?
             .json::<StoriesRes>()

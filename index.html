@@ -18,6 +18,42 @@
   </script>
 </head>
 
-<body></body>
+<body>
+  <script>
+    function loadBridge(callback) {
+      const existingScript = document.getElementById("storyblokBridge");
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "//app.storyblok.com/f/storyblok-v2-latest.js";
+        script.id = "storyblokBridge";
+        document.body.appendChild(script);
+        script.onload = () => {
+          callback();
+        };
+      } else {
+        callback();
+      }
+    }
+
+    function init() {
+      const {
+        StoryblokBridge,
+        location
+      } = window
+      setTimeout(() => {
+        const storyblokInstance = new StoryblokBridge()
+
+        storyblokInstance.on(['published', 'change'], () => {
+          // reload page if save or publish is clicked
+          location.reload(true)
+        })
+      }, 1000)
+    }
+    if (window.location.search.includes('_storyblok')) {
+      // load the bridge only inside of Storyblok
+      loadBridge(init)
+    }
+  </script>
+</body>
 
 </html>

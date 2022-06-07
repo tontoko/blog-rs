@@ -8,7 +8,7 @@ use yew_router::prelude::*;
 fn switch(routes: Route) -> Html {
     match routes {
         Route::Home => html! { <Home /> },
-        Route::Post => html! { <Post /> },
+        Route::Post { name } => html! { <Post name={name} /> },
         Route::NotFound => html! { <h1>{ "404" }</h1> },
     }
 }

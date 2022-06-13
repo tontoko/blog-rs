@@ -1,14 +1,27 @@
-use std::collections::HashMap;
-
 use serde::Deserialize;
 use yew::prelude::*;
 use yew::suspense::{use_future, Suspension, UseFutureHandle};
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug, Clone, PartialEq)]
+pub struct Asset {
+    pub id: i64,
+    pub alt: String,
+    pub name: String,
+    pub focus: String,
+    pub title: String,
+    pub filename: String,
+    pub copyright: String,
+    pub fieldtype: String,
+}
+
+#[derive(Deserialize, Debug, Clone, Properties, PartialEq)]
 pub struct Content {
     pub component: String, // and fields you define yourself are in here
     pub _editable: Option<String>,
-    pub body: Vec<HashMap<String, String>>,
+    pub body: Option<Vec<Content>>,
+    pub text: Option<String>,
+    pub image: Option<Asset>,
+    pub columns: Option<Vec<Content>>,
 }
 #[derive(Deserialize, Debug, Clone)]
 pub struct TranslatedSlug {

@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use crate::{components::blok::Bloks, hooks::use_story::use_story, HtmlComment};
+use crate::{components::bloks::Bloks, hooks::use_story::use_story, HtmlComment};
 
 #[derive(Properties, PartialEq)]
 pub struct BlogPostProps {

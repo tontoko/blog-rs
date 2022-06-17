@@ -3,7 +3,7 @@ use yew::prelude::*;
 use yew_router::Routable;
 
 pub mod components {
-    pub mod blok;
+    pub mod bloks;
     pub mod layouts {
         pub mod blog_layout;
     }

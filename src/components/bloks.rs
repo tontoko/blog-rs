@@ -15,7 +15,7 @@ pub fn feature(Content { text, .. }: &Content) -> Html {
 #[function_component(Grid)]
 pub fn grid(Content { columns, .. }: &Content) -> Html {
     html! {
-        <div class="grid grid-flow-col w-full">{for columns.clone().unwrap().iter().map(|blok| html! {
+        <div class="w-full grid grid-flow-col auto-cols-auto">{for columns.clone().unwrap().iter().map(|blok| html! {
             <>
                 <HtmlComment comment={blok._editable.clone().unwrap_or_default()} />
                 {Bloks::render(blok)}
@@ -40,7 +40,7 @@ pub fn image_with_description(Content { image, text, .. }: &Content) -> Html {
     }
     let image = image.clone().unwrap();
     html! {
-      <div>
+      <div class="flex flex-col">
         <img src={image.filename} alt={image.alt} />
         <p>{text.clone().unwrap_or_default()}</p>
       </div>

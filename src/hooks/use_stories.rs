@@ -1,6 +1,6 @@
 use serde::Deserialize;
 use yew::prelude::*;
-use yew::suspense::{use_future, Suspension, UseFutureHandle};
+use yew::suspense::{use_future_with_deps, Suspension, UseFutureHandle};
 
 #[derive(Deserialize, Debug, Clone, PartialEq)]
 pub struct Asset {
@@ -49,8 +49,8 @@ pub struct Story {
     pub full_slug: String,
     pub default_full_slug: Option<String>,
     pub created_at: String,
-    pub published_at: String,
-    pub first_published_at: String,
+    pub published_at: Option<String>,
+    pub first_published_at: Option<String>,
     pub release_id: Option<String>,
     pub lang: String,
     pub content: Content,
@@ -67,19 +67,35 @@ pub struct StoriesRes {
     pub stories: Vec<Story>,
 }
 
+#[derive(Deserialize, Debug, Clone)]
+pub struct UseStoriesReturn {
+    pub stories_res: StoriesRes,
+    pub total_posts: i64,
+}
+
+async fn fetch_stories(url: String) -> Result<UseStoriesReturn, reqwasm::Error> {
+    let res = reqwasm::http::Request::get(&url).send().await?;
+    let total_posts = res.headers().get("total").unwrap_or_default();
+    let json = res.json::<StoriesRes>().await?;
+    Ok(UseStoriesReturn {
+        stories_res: json,
+        total_posts: total_posts.parse::<i64>().unwrap_or(0),
+    })
+}
+
 #[hook]
-pub fn use_stories() -> Result<UseFutureHandle<Result<StoriesRes, reqwasm::Error>>, Suspension> {
+pub fn use_stories(
+    current_page: i32,
+) -> Result<UseFutureHandle<Result<UseStoriesReturn, reqwasm::Error>>, Suspension> {
     let version = if option_env!("DEV").is_some() {
         "draft"
     } else {
         "published"
     };
-    let url = format!("https://api.storyblok.com/v2/cdn/stories?cv=1654353862&token=MqSFcDWDiuLzwkH3h7q4hwtt&version={version}");
-    use_future(|| async move {
-        reqwasm::http::Request::get(&url)
-            .send()
-            .await?
-            .json::<StoriesRes>()
-            .await
-    })
+    let url = format!("https://api.storyblok.com/v2/cdn/stories?cv=1654353862&token=MqSFcDWDiuLzwkH3h7q4hwtt&version={version}&page={current_page}&per_page=10");
+
+    use_future_with_deps(
+        |url| async move { fetch_stories(url.to_string()).await },
+        url,
+    )
 }

@@ -17,7 +17,8 @@ pub fn use_story(
     } else {
         "published"
     };
-    let url = format!("https://api.storyblok.com/v2/cdn/stories/{name}?cv=1654365742&token=MqSFcDWDiuLzwkH3h7q4hwtt&version={version}");
+    let lowered_name = name.to_lowercase();
+    let url = format!("https://api.storyblok.com/v2/cdn/stories/{lowered_name}?cv=1654365742&token=MqSFcDWDiuLzwkH3h7q4hwtt&version={version}");
     use_future(|| async move {
         reqwasm::http::Request::get(&url)
             .send()

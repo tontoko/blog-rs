@@ -38,11 +38,11 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
         Ok(ref res) => res.stories_res.stories.iter().map(|story| {
             let description = &story.content.body.as_ref().unwrap_or(&Vec::new()).iter().map(|body| {
                 body.text.as_ref().unwrap_or(&String::from("")).clone()
-            }).collect::<Vec<_>>().join(" ");
+            }).collect::<Vec<_>>().join("\n");
             html! {
-                <div class="flex flex-col border border-slate-400 rounded-lg p-2 min-h-[100px] cursor-pointer" onclick={handle_click(story.name.to_lowercase().clone())}>
+                <div class="flex flex-col border border-slate-400 rounded-lg p-3 min-h-[100px] cursor-pointer" onclick={handle_click(story.name.to_lowercase().clone())}>
                     <p>{&story.name}</p>
-                    <p class="line-clamp-1 md:line-clamp-2">{description}</p>
+                    <p class="line-clamp-3 md:line-clamp-6">{description}</p>
                 </div>        
             }}
         ).collect(),
@@ -77,7 +77,7 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
 
     Ok(html! { 
         <>
-            <div class="flex flex-col gap-2 w-full">
+            <div class="flex flex-col gap-5 w-full">
                 {result_item_html}
             </div>
             <div class="flex flex-col w-full items-center mt-2">

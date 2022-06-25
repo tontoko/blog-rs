@@ -1,6 +1,9 @@
 use serde::Deserialize;
+use strum::EnumString;
 use yew::prelude::*;
 use yew::suspense::{use_future_with_deps, Suspension, UseFutureHandle};
+
+use crate::components::bloks::Bloks;
 
 #[derive(Deserialize, Debug, Clone, PartialEq)]
 pub struct Asset {
@@ -14,12 +17,111 @@ pub struct Asset {
     pub fieldtype: String,
 }
 
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumString)]
+#[strum(serialize_all = "snake_case")]
+#[serde(rename_all = "snake_case")]
+pub enum MarksType {
+    Bold,
+    Strike,
+    Underline,
+    Italic,
+    Link,
+}
+
+#[derive(Deserialize, Debug, Clone, Properties, PartialEq)]
+pub struct Marks {
+    pub r#type: MarksType,
+    pub attrs: Option<Attrs>,
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumString)]
+#[strum(serialize_all = "snake_case")]
+#[serde(rename_all = "snake_case")]
+pub enum TargetType {
+    _Self,
+    _Blank,
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumString)]
+#[strum(serialize_all = "snake_case")]
+#[serde(rename_all = "snake_case")]
+pub enum LinkType {
+    Story,
+    Url,
+    Asset,
+    Email,
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq)]
+#[serde(untagged)]
+pub enum Attrs {
+    Link {
+        href: String,
+        uuid: Option<String>, // only story
+        anchor: Option<String>,
+        target: Option<TargetType>,
+        linktype: Option<LinkType>,
+    },
+    Image {
+        alt: Option<String>,
+        src: Option<String>,
+        title: Option<String>,
+        copyright: Option<String>,
+    },
+    Heading {
+        level: Option<i32>,
+    },
+    OrderedList {
+        order: Option<i32>,
+    },
+    Blok {
+        id: Option<String>,
+        body: Option<Vec<Content>>,
+    },
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq, EnumString)]
+#[strum(serialize_all = "snake_case")]
+#[serde(rename_all = "snake_case")]
+pub enum RichTextType {
+    Doc,
+    Feature,
+    Heading,
+    Paragraph,
+    BulletList,
+    ListItem,
+    Text,
+    OrderedList,
+    Blockquote,
+    HorizontalRule,
+    Link,
+    Image,
+    Blok,
+}
+
+#[derive(Deserialize, Debug, Clone, Properties, PartialEq)]
+pub struct RichTextContent {
+    pub r#type: RichTextType,
+    pub text: Option<String>,
+    pub marks: Option<Vec<Marks>>,
+    pub attrs: Option<Attrs>,
+    pub content: Option<Vec<RichTextContent>>,
+}
+
+#[derive(Deserialize, Debug, Clone, PartialEq)]
+pub struct RichText {
+    pub r#type: RichTextType,
+    pub content: Option<Vec<RichTextContent>>,
+    pub attrs: Option<Attrs>,
+}
+
 #[derive(Deserialize, Debug, Clone, Properties, PartialEq)]
 pub struct Content {
-    pub component: String, // and fields you define yourself are in here
+    pub component: Bloks,
     pub _editable: Option<String>,
     pub body: Option<Vec<Content>>,
     pub text: Option<String>,
+    pub rich_text: Option<RichText>,
     pub image: Option<Asset>,
     pub columns: Option<Vec<Content>>,
 }

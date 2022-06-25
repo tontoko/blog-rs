@@ -6,7 +6,8 @@
     "build": "trunk build --release",
     "dev": "run-p dev:*",
     "dev:serve": "DEV=true trunk serve",
-    "dev:css": "tailwindcss -w -o ./public/tailwind.css"
+    "dev:css": "tailwindcss -w -o ./public/tailwind.css",
+    "ssl-proxy": "local-ssl-proxy --source 3010 --target 8080 --cert localhost.pem --key localhost-key.pem"
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.0",

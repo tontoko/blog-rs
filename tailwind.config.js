@@ -8,7 +8,27 @@ module.exports = {
     "./src/**/*.css",
     "./index.html",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            fontFamily: [
+              "Helvetica Neue",
+              "Arial",
+              "Hiragino Kaku Gothic ProN",
+              "Hiragino Sans",
+              "Meiryo",
+              "sans-serif",
+            ],
+            lineHeight: 2,
+            fontFeatureSettings: "palt",
+            letterSpacing: "0.1em",
+          },
+        },
+      },
+    },
+  },
   variants: {},
   plugins: [
     require("@tailwindcss/typography"),

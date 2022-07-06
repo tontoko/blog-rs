@@ -1,6 +1,6 @@
 use yew::{function_component, html, Html};
 
-use crate::{components::bloks::Bloks, hooks::use_stories::Content, HtmlComment};
+use crate::{components::bloks::Bloks, domain::story::Content, HtmlComment};
 
 #[function_component(Grid)]
 pub fn grid(Content { columns, .. }: &Content) -> Html {

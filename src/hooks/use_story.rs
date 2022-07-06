@@ -1,4 +1,4 @@
-use crate::hooks::use_stories::Story;
+use crate::domain::story::Story;
 use serde::Deserialize;
 use yew::prelude::*;
 use yew::suspense::{use_future, Suspension, UseFutureHandle};

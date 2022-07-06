@@ -4,7 +4,8 @@ use serde::Serialize;
 use yew::{prelude::*};
 use yew_router::{hooks::{use_location, use_navigator}, components::Link};
 
-use crate::{hooks::use_stories::{use_stories, RichTextContent}, Route};
+use crate::{hooks::use_stories::{use_stories}, Route};
+use crate::{domain::story::RichTextContent };
 
 #[derive(Clone ,PartialEq, Serialize)]
 struct QueryParams {

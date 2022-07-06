@@ -1,5 +1,5 @@
 use crate::{
-    hooks::use_stories::{Content, LinkAttrs, LinkType, Marks, RichTextContent},
+    domain::story::{Content, LinkAttrs, LinkType, Marks, RichTextContent},
     Route,
 };
 use yew::{classes, function_component, html, Html, Properties};

@@ -28,6 +28,9 @@ pub mod hooks {
     pub mod use_stories;
     pub mod use_story;
 }
+pub mod domain {
+    pub mod story;
+}
 
 #[derive(Clone, Routable, PartialEq)]
 pub enum Route {

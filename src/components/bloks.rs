@@ -5,7 +5,7 @@ use serde::Deserialize;
 use strum::{Display, EnumString};
 use yew::prelude::*;
 
-use crate::hooks::use_stories::Content;
+use crate::domain::story::Content;
 
 use super::{
     atoms::{grid::Grid, teaser::Teaser},

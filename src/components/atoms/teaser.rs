@@ -1,6 +1,6 @@
 use yew::{function_component, html, Html};
 
-use crate::hooks::use_stories::Content;
+use crate::domain::story::Content;
 
 #[function_component(Teaser)]
 pub fn teaser(Content { text, .. }: &Content) -> Html {

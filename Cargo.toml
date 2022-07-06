@@ -9,14 +9,14 @@ reqwasm = "0.5.0"
 serde = { version = "1.0", features = ["derive"] }
 wasm-bindgen-futures = "0.4"
 yew-router = { git = "https://github.com/yewstack/yew/" }
-log = "0.4.17"
-wasm-logger = "0.2.0"
-gloo = { version="0.8.0", features = ["futures"] }
-regex = "1.5"
+log = "0.4"
+wasm-logger = "0.2"
+gloo = { version="0.8", features = ["futures"] }
+regex = "1.6"
 strum = { version = "0.24", features = ["derive"] }
 
 [dependencies.web-sys]
-version = "0.3.19"
+version = "0.3"
 features = [
     "Comment",
     "Document",

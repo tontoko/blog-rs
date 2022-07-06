@@ -25,6 +25,7 @@ pub mod components {
     }
 }
 pub mod hooks {
+    pub mod use_space;
     pub mod use_stories;
     pub mod use_story;
 }

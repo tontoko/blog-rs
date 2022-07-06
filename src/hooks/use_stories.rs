@@ -1,6 +1,6 @@
 use serde::Deserialize;
 use yew::prelude::*;
-use yew::suspense::{use_future_with_deps, Suspension, UseFutureHandle};
+use yew::suspense::{use_future_with_deps, SuspensionResult, UseFutureHandle};
 
 use crate::domain::story::Story;
 
@@ -28,7 +28,7 @@ async fn fetch_stories(url: String) -> Result<UseStoriesReturn, reqwasm::Error> 
 #[hook]
 pub fn use_stories(
     current_page: i32,
-) -> Result<UseFutureHandle<Result<UseStoriesReturn, reqwasm::Error>>, Suspension> {
+) -> SuspensionResult<UseFutureHandle<Result<UseStoriesReturn, reqwasm::Error>>> {
     let version = if option_env!("DEV").is_some() {
         "draft"
     } else {

@@ -1,7 +1,6 @@
 use serde::Deserialize;
 use strum::EnumString;
 use yew::prelude::*;
-use yew::suspense::{use_future_with_deps, Suspension, UseFutureHandle};
 
 use crate::components::bloks::Bloks;
 

@@ -109,7 +109,9 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
                     <Link<Route, QueryParams> to={Route::Home} query={QueryParams {page: (current_page+1).to_string()}}>{"次へ"}</Link<Route, QueryParams>>
                 </div>
         }},
-        Err(ref failure) => failure.to_string().into(),
+        Err(ref failure) => {
+            log::error!("{}", failure);
+            html!(500)},
     };
 
     Ok(html! { 

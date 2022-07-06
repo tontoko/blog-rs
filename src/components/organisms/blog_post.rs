@@ -30,7 +30,10 @@ pub fn blog_post(BlogPostProps { name }: &BlogPostProps) -> HtmlResult {
                 </>
             }
         }
-        Err(ref failure) => failure.to_string().into(),
+        Err(ref failure) => {
+            log::error!("{}", failure);
+            html!(500)
+        }
     };
 
     Ok(result_html)

@@ -15,6 +15,14 @@ pub mod components {
         pub mod blog_list;
         pub mod blog_post;
     }
+    pub mod atoms {
+        pub mod grid;
+        pub mod teaser;
+    }
+    pub mod molecules {
+        pub mod feature;
+        pub mod image_with_description;
+    }
 }
 pub mod hooks {
     pub mod use_stories;

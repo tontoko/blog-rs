@@ -151,5 +151,5 @@ pub fn feature(
     if rich_text_props.is_none() {
         return html!();
     };
-    html!(<RichText content={rich_text_props.clone().unwrap()} />)
+    html!(<div><RichText content={rich_text_props.clone().unwrap()} /></div>)
 }

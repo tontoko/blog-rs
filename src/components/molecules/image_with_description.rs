@@ -12,6 +12,8 @@ pub fn image_with_description(Content { image, text, .. }: &Content) -> Html {
     html! {
       <div class="flex flex-col">
         <img
+        width="320"
+        height="180"
         src={image.filename}
         alt={image.alt}
         class={if text.is_some() {"mb-0 h-auto w-full"} else {"h-auto w-full"}}

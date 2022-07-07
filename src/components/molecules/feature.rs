@@ -124,7 +124,13 @@ fn rich_text(RichTextProps { content }: &RichTextProps) -> Html {
         RichTextContent::Image { attrs } => {
             html! {
               <a href={attrs.src.clone()} target="_blank" title={attrs.alt.clone()}>
-                <img class="inline h-auto w-full sm:w-2/3 md:w-1/2" src={attrs.src.clone()} alt={attrs.alt.clone()} />
+                <img
+                width="320"
+                height="180"
+                class="inline h-auto w-full sm:w-2/3 md:w-1/2"
+                src={attrs.src.clone()}
+                alt={attrs.alt.clone()}
+                />
               </a>
             }
         }

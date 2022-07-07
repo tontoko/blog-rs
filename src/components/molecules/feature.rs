@@ -110,21 +110,21 @@ fn rich_text(RichTextProps { content }: &RichTextProps) -> Html {
         }
         RichTextContent::OrderedList { content, attrs } => html! {
         <ol type={attrs.order.to_string()}>{
-          content.iter()
-          .map(|c| html!{<RichText content={c.clone()} />})
-          .collect::<Vec<_>>()
+            content.iter()
+            .map(|c| html!{<RichText content={c.clone()} />})
+            .collect::<Vec<_>>()
         }</ol>},
         RichTextContent::Blockquote { content } => html! {
         <blockquote>{
-          content.iter()
-          .map(|c| html!{<RichText content={c.clone()} />})
-          .collect::<Vec<_>>()
+            content.iter()
+            .map(|c| html!{<RichText content={c.clone()} />})
+            .collect::<Vec<_>>()
         }</blockquote>},
         RichTextContent::HorizontalRule => html! {<div class="w-full border-t-2" />},
         RichTextContent::Image { attrs } => {
             html! {
-              <a href={attrs.src.clone()} target="_blank">
-                <img class="inline" src={attrs.src.clone()} alt={attrs.alt.clone()} />
+              <a href={attrs.src.clone()} target="_blank" title={attrs.alt.clone()}>
+                <img class="inline h-auto w-full sm:w-2/3 md:w-1/2" src={attrs.src.clone()} alt={attrs.alt.clone()} />
               </a>
             }
         }

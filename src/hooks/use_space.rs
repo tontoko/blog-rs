@@ -21,7 +21,7 @@ pub fn use_space() -> SuspensionResult<UseFutureHandle<Result<SpaceRes, reqwasm:
     let url =
         "https://api.storyblok.com/v2/cdn/spaces/me?cv=1654365742&token=MqSFcDWDiuLzwkH3h7q4hwtt";
     use_future(|| async move {
-        reqwasm::http::Request::get(&url)
+        reqwasm::http::Request::get(url)
             .send()
             .await?
             .json::<SpaceRes>()

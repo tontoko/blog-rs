@@ -155,4 +155,5 @@ pub struct Story {
     pub group_id: String,
     pub translated_slugs: Option<Vec<TranslatedSlug>>,
     pub alternates: Vec<Alternate>,
+    pub tag_list: Vec<String>,
 }

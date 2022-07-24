@@ -57,12 +57,14 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
 
     let query;
     let mut current_page = 1;
+    let mut tag = None;
     if let Some(location) = location {
-        query = location.query::<HashMap<String, String>>();
-        current_page = query.unwrap_or_default().get("page").unwrap_or(&String::from("1")).parse().unwrap_or(1);
+        query = location.query::<HashMap<String, String>>().unwrap_or_default();
+        current_page = query.get("page").unwrap_or(&String::from("1")).parse().unwrap_or(1);
+        tag = query.get("tag");
     };
     
-    let res = use_stories(current_page)?;
+    let res = use_stories(current_page, tag)?;
 
     let handle_click = |name: String| {
         let onclick = onclick.clone();

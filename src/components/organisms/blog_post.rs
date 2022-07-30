@@ -33,19 +33,21 @@ pub fn blog_post(BlogPostProps { name }: &BlogPostProps) -> HtmlResult {
                                 {Bloks::render(blok)}
                             </>
                         })}
-                        <div class="w-full border-t-2 my-2" />
                         {if !story.tag_list.is_empty() { html! {
-                            <div class="flex row gap-2">
-                                <div>{"Tags: "}</div>
-                                {for story.tag_list.iter().map(|tag| html! {
-                                    <Link<Route, TagQueryParams>
-                                        to={Route::Home}
-                                        query={TagQueryParams {tag: tag.to_string()}}
-                                    >
-                                        <div>{tag}</div>
-                                    </Link<Route, TagQueryParams>>
-                                })}
-                            </div>
+                            <>
+                                <div class="w-full border-t-2 my-2" />
+                                <div class="flex row gap-2">
+                                    <div>{"Tags: "}</div>
+                                    {for story.tag_list.iter().map(|tag| html! {
+                                        <Link<Route, TagQueryParams>
+                                            to={Route::Home}
+                                            query={TagQueryParams {tag: tag.to_string()}}
+                                        >
+                                            <div>{tag}</div>
+                                        </Link<Route, TagQueryParams>>
+                                    })}
+                                </div>
+                            </>
                         }}
                         else {html!()}
                         }

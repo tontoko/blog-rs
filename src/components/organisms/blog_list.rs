@@ -83,7 +83,7 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
             }).collect::<Vec<_>>().join("\n");
             html! {
                 <div class="flex flex-col border border-slate-400 rounded-lg p-3 min-h-[100px] cursor-pointer" onclick={handle_click(story.name.to_lowercase().clone())}>
-                    <p>{&story.name}</p>
+                    <h4>{&story.name}</h4>
                     <p class="whitespace-pre-line line-clamp-4 md:line-clamp-6">{description}</p>
                 </div>        
             }}

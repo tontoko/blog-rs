@@ -19,8 +19,8 @@ pub fn blog_layout(BlogLayoutProps { children }: &BlogLayoutProps) -> Html {
     };
     html! {
         <div class="prose max-w-full flex flex-col w-full items-center break-words my-10">
-            <div class="flex h-20 justify-center items-center">
-                <h1 class="cursor-pointer" onclick={onclick()}>
+            <div class="flex h-20 justify-center items-center mx-4">
+                <h1 class="cursor-pointer text-center" onclick={onclick()}>
                     <Suspense fallback={html!()}>
                         <BlogTitle />
                     </Suspense>

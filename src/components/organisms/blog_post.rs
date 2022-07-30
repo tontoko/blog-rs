@@ -24,9 +24,7 @@ pub fn blog_post(BlogPostProps { name }: &BlogPostProps) -> HtmlResult {
                 <>
                     <HtmlComment comment={story.content._editable.clone().unwrap_or_default()} />
                     <div class="flex flex-col">
-                        <div class="flex justify-center">
-                            <h1 class="font-bold text-3xl mb-4">{&story.name}</h1>
-                        </div>
+                        <h2 class="text-center">{&story.name}</h2>
                         {for story.content.body.as_ref().unwrap().iter().map(|blok| html! {
                             <>
                                 <HtmlComment comment={blok._editable.clone().unwrap_or_default()} />

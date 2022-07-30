@@ -66,9 +66,9 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
     
     let res = use_stories(current_page, tag)?;
 
-    let handle_click = |name: String| {
+    let handle_click = |id: String| {
         let onclick = onclick.clone();
-        Callback::from(move |_| onclick.emit(name.clone()))
+        Callback::from(move |_| onclick.emit(id.clone()))
     };
     let result_item_html: Html = match *res {
         Ok(ref res) => res.stories_res.stories.iter().map(|story| {
@@ -82,7 +82,7 @@ pub fn blog_list(BlogListProps { onclick }: &BlogListProps) -> HtmlResult {
                 }
             }).collect::<Vec<_>>().join("\n");
             html! {
-                <div class="flex flex-col border border-slate-400 rounded-lg p-3 min-h-[100px] cursor-pointer" onclick={handle_click(story.name.to_lowercase().clone())}>
+                <div class="flex flex-col border border-slate-400 rounded-lg p-3 min-h-[100px] cursor-pointer" onclick={handle_click(story.id.to_string())}>
                     <h4>{&story.name}</h4>
                     <p class="whitespace-pre-line line-clamp-4 md:line-clamp-6">{description}</p>
                 </div>        

@@ -8,8 +8,8 @@ use yew_router::hooks::use_navigator;
 #[function_component(Home)]
 pub fn home() -> Html {
     let history = use_navigator().unwrap();
-    let onclick = Callback::from(move |name: String| {
-        history.push(&Route::Post { name });
+    let onclick = Callback::from(move |id: String| {
+        history.push(&Route::Post { id });
     });
     let fallback = html! {<div>{"Loading..."}</div>};
 

@@ -37,8 +37,8 @@ pub mod domain {
 pub enum Route {
     #[at("/")]
     Home,
-    #[at("/posts/:name")]
-    Post { name: String },
+    #[at("/posts/:id")]
+    Post { id: String },
     #[not_found]
     #[at("/404")]
     NotFound,

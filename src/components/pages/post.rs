@@ -3,16 +3,16 @@ use yew::prelude::*;
 
 #[derive(Properties, PartialEq)]
 pub struct PostProps {
-    pub name: String,
+    pub id: String,
 }
 
 #[function_component(Post)]
-pub fn post(PostProps { name }: &PostProps) -> Html {
+pub fn post(PostProps { id }: &PostProps) -> Html {
     let fallback = html! {<div>{"Loading..."}</div>};
     html! {
         <BlogLayout>
             <Suspense {fallback}>
-                <BlogPost name={name.clone()} />
+                <BlogPost name={id.clone()} />
             </Suspense>
         </BlogLayout>
     }

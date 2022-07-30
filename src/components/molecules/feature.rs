@@ -92,7 +92,7 @@ fn rich_text(RichTextProps { content }: &RichTextProps) -> Html {
                     return html! {
                         <Link<Route>
                         classes={classes!(class)}
-                        to={Route::Post { name: href }}
+                        to={Route::Post { id: href }}
                         >{text}</Link<Route>>
                     };
                 }

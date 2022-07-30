@@ -132,7 +132,7 @@ pub struct Alternate {
     pub slug: String,
     pub full_slug: String,
     pub is_folder: bool,
-    pub parent_id: i64,
+    pub parent_id: Option<i64>,
 }
 
 #[derive(Deserialize, Debug, Clone)]
@@ -151,7 +151,7 @@ pub struct Story {
     pub content: Content,
     pub position: i64,
     pub is_startpage: bool,
-    pub parent_id: i64,
+    pub parent_id: Option<i64>,
     pub group_id: String,
     pub translated_slugs: Option<Vec<TranslatedSlug>>,
     pub alternates: Vec<Alternate>,
